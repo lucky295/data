@@ -1,0 +1,49 @@
+Host *
+    ServerAliveInterval 15
+    ServerAliveCountMax 6
+    Compression yes
+
+Host jump
+    #HostName xxxxx
+    HostName xxx.research.xxx.com
+    User srinivasa
+    IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes
+    ##LocalForward localhost:3389 10.42.1.190:3389
+    ProxyCommand ssh lxdkc001 -W %h:%p
+	ProxyCommand ssh 192.168.56.101 -W %h:%p
+    ##LocalForward localhost:33389 10.42.6.234:3389
+
+Host lxdkc019
+    HostName lxdkc001
+    User asrini
+    #IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes 
+	
+Host 192.168.56.103
+    HostName 192.168.56.103
+    User root
+    #IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes 
+	LocalForward localhost:9999 192.168.56.103:8000
+	
+	
+Host 192.168.56.101
+    HostName 192.168.56.101
+    User root
+    #IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes 
+	LocalForward localhost:9999 192.168.56.101:80
+	
+	
+	
+Host git-codecommit.us-east-1.amazonaws.com
+User xxxxx
