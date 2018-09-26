@@ -1,0 +1,33 @@
+Create an IAM user and attach appropriate permissions to the user to access codecommit repositories.
+
+Create secreate & access keys to access from CLI & configure awscli in the server level.
+
+pip install awscli
+
+aws configure
+
+create a codecommit repository in the codecommit
+
+Now clone the github repo to local machine
+
+ git clone --mirror https://github.com/awslabs/aws-demo-php-simple-app.git aws-codecommit-demo(local-repo)
+ 
+ now in the server level please set the git confgiurations for codecommit access
+ 
+ $ git config --global credential.helper '!aws codecommit credential-helper $@'
+ $ git config --global credential.UseHttpPath true
+ 
+ Now push the data to the codecommit repo
+ 
+ Ex : $ git push https://git-codecommit.us-east-1.amazonaws.com/v1/repos/migration-repo --all
+ 
+ If any tags you have use the bellow one to push them to codecommit 
+
+Ex : $ git push ssh://git-codecommit.us-east-2.amazonaws.com/v1/repos/migration-repo --tags
+
+Once the push is success! Next delete the local repo and clone the codecommit repo to your local
+
+Ex $ git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/repo-data
+
+
+
