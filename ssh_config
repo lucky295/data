@@ -3,36 +3,37 @@ Host *
     ServerAliveCountMax 6
     Compression yes
 
+Host hhsuitedb
+    HostName 10.42.76.140
+    User ec2-user
+    IdentityFile ~/.ssh/hhsuite_custom_db.pem
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes	
+    ProxyCommand ssh jump -W %h:%p	
+
+Host hhsuite
+    HostName 10.42.77.223
+    User ec2-user
+    IdentityFile ~/.ssh/srini_testing.pem
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes	
+    ProxyCommand ssh jump -W %h:%p
+	
 Host jump
-    #HostName xxxxx
-    HostName xxx.research.xxx.com
+    #HostName xxxx
+    HostName xxxx
     User srinivasa
     IdentityFile ~/.ssh/id_rsa
     IdentitiesOnly yes
     ForwardAgent yes
     ForwardX11 yes
-    ##LocalForward localhost:3389 10.42.1.190:3389
-    ProxyCommand ssh lxdkc001 -W %h:%p
-	ProxyCommand ssh 192.168.56.101 -W %h:%p
+    #LocalForward localhost:9000 10.42.77.226:80
+    #LocalForward localhost:9002 10.42.77.42:443
+    #ProxyCommand ssh lxdkc001 -W %h:%p
+    #ProxyCommand ssh 192.168.56.101 -W %h:%p
     ##LocalForward localhost:33389 10.42.6.234:3389
-
-Host lxdkc019
-    HostName lxdkc001
-    User asrini
-    #IdentityFile ~/.ssh/id_rsa
-    IdentitiesOnly yes
-    ForwardAgent yes
-    ForwardX11 yes 
-	
-Host 192.168.56.103
-    HostName 192.168.56.103
-    User root
-    #IdentityFile ~/.ssh/id_rsa
-    IdentitiesOnly yes
-    ForwardAgent yes
-    ForwardX11 yes 
-	LocalForward localhost:9999 192.168.56.103:8000
-	
 	
 Host 192.168.56.101
     HostName 192.168.56.101
@@ -41,9 +42,18 @@ Host 192.168.56.101
     IdentitiesOnly yes
     ForwardAgent yes
     ForwardX11 yes 
-	LocalForward localhost:9999 192.168.56.101:80
+    LocalForward localhost:8000 192.168.56.101:8090
 	
+	
+Host 192.168.56.102
+    HostName 192.168.56.102
+    User node
+    #IdentityFile ~/.ssh/id_rsa
+    IdentitiesOnly yes
+    ForwardAgent yes
+    ForwardX11 yes 
+    LocalForward localhost:8000 192.168.56.102:8080
 	
 	
 Host git-codecommit.us-east-1.amazonaws.com
-User xxxxx
+User AKIAJX7EGBHZIFBE2Z5Q	
